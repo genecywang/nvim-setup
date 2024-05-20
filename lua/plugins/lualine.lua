@@ -53,6 +53,7 @@ return {
     lualine.setup({
       options = {
         theme = my_lualine_theme,
+        -- theme = "vscode",
       },
       sections = {
         lualine_x = {
