@@ -31,7 +31,7 @@ return {
         "cssls",
         "tailwindcss",
         "lua_ls",
-        "pylsp",
+        -- "pylsp",
         "bashls",
         -- "terraformls",
         -- "golangci_lint_ls",
@@ -42,13 +42,13 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "isort", -- python formatter
-        "black", -- python formatter
+        -- "isort", -- python formatter
+        -- "black", -- python formatter
         -- "gci", -- golang formatter
         -- "gofumpt", -- golang formatter
         -- "goimports", -- golang formatter
         -- "shfmt", -- bash formatter
-        "pylint",
+        -- "pylint",
         "eslint",
         "shellcheck",
       },
