@@ -31,11 +31,10 @@ return {
         "cssls",
         "tailwindcss",
         "lua_ls",
-        "pyright",
         "pylsp",
         "bashls",
-        "terraformls",
-        "golangci_lint_ls",
+        -- "terraformls",
+        -- "golangci_lint_ls",
       },
     })
 
@@ -45,10 +44,10 @@ return {
         "stylua", -- lua formatter
         "isort", -- python formatter
         "black", -- python formatter
-        "gci", -- golang formatter
-        "gofumpt", -- golang formatter
-        "goimports", -- golang formatter
-        "shfmt", -- bash formatter
+        -- "gci", -- golang formatter
+        -- "gofumpt", -- golang formatter
+        -- "goimports", -- golang formatter
+        -- "shfmt", -- bash formatter
         "pylint",
         "eslint",
         "shellcheck",
