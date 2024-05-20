@@ -9,6 +9,7 @@ ARCH=$(uname -m)
 CURRENT_SHELL=$(basename "$SHELL")
 OS_TYPE=$(uname -s)
 PKG_DIR="${HOME}/.local"
+NVIM_DIR="${HOME}/.config/nvim"
 
 mkdir -p "${PKG_DIR}"/{source,packages,bin}
 
@@ -113,4 +114,11 @@ if ! grep -q "${PKG_DIR}/bin" <<<"$PATH"; then
   echo "Binary path \"${PKG_DIR}/bin\" added to \$PATH."
 else
   echo "Binary path \"${PKG_DIR}/bin\" already exists in \$PATH."
+fi
+
+if [ -d "$NVIM_DIR" ]; then
+  mv "$NVIM_DIR" "${NVIM_DIR}.bk$(date +"%Y%m%d-%H%M%S")" &&
+    git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
+else
+  git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
 fi
