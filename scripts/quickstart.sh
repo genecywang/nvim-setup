@@ -117,8 +117,7 @@ else
 fi
 
 if [ -d "$NVIM_DIR" ]; then
-  mv "$NVIM_DIR" "${NVIM_DIR}.bk$(date +"%Y%m%d-%H%M%S")" &&
-    git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
+  mv "$NVIM_DIR" "${NVIM_DIR}.bk$(date +"%Y%m%d-%H%M%S")" && git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
 else
   git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
 fi
