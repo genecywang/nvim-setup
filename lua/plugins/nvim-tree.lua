@@ -32,6 +32,7 @@ return {
       -- window splits
       actions = {
         open_file = {
+          quit_on_open = false,
           window_picker = {
             enable = false,
           },
@@ -43,6 +44,20 @@ return {
       git = {
         ignore = false,
       },
+      -- configure custom mappings
+      on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+
+        -- Default mappings are not set if a custom on_attach function is provided
+        api.config.mappings.default_on_attach(bufnr)
+
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        -- Set your custom keymap
+        vim.keymap.set("n", "o", api.node.open.tab, opts("Open in new tab"))
+      end,
     })
 
     -- set keymaps
@@ -52,5 +67,5 @@ return {
     keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
     keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
-  end
+  end,
 }

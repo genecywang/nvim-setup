@@ -23,3 +23,13 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save current file" }) -- save current file
+
+-- vim - bufferline tab
+for i = 1, 9 do
+  vim.api.nvim_set_keymap(
+    "n",
+    "<leader>" .. i,
+    ":BufferLineGoToBuffer " .. i .. "<CR>",
+    { noremap = true, silent = true }
+  )
+end

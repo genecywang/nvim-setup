@@ -32,6 +32,7 @@ return {
             -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
             ["<C-t>"] = trouble_telescope.open,
+            ["<C-o>"] = require("telescope.actions").select_tab,
           },
         },
       },
