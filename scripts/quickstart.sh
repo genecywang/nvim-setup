@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 NVIM_VERSION="0.11.5"
 NODEJS_VERSION="24.12.0"
 RIPGREP_VERSION="15.1.0"
 LAZYGIT_VERSION="0.57.0"
-
-# NVIM_VERSION="0.10.1"
-# NODEJS_VERSION="20.14.0"
-# RIPGREP_VERSION="14.1.0"
-# LAZYGIT_VERSION="0.43.0"
 
 ARCH=$(uname -m)
 CURRENT_SHELL=$(basename "$SHELL")
@@ -38,16 +35,23 @@ check_env() {
 
   if [[ "$OS_TYPE" == "Linux" && "$ARCH" == "x86_64" ]]; then
     NVIM_NAME="nvim-linux-x86_64"
-    PIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-${ARCH}-unknown-linux-musl"
+    RIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-${ARCH}-unknown-linux-musl"
     LAZYGIT_NAME="lazygit_${LAZYGIT_VERSION}_${OS_TYPE}_32-bit"
+  elif [[ "$OS_TYPE" == "Linux" && "$ARCH" == "arm64" ]]; then
+    NVIM_NAME="nvim-linux-arm64"
+    RIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-aarch64-unknown-linux-musl"
+    LAZYGIT_NAME="lazygit_${LAZYGIT_VERSION}_${OS_TYPE}_arm64"
   elif [[ "$OS_TYPE" == "Darwin" && "$ARCH" == "x86_64" ]]; then
     NVIM_NAME="nvim-macos-${ARCH}"
-    PIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-${ARCH}-apple-darwin"
+    RIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-${ARCH}-apple-darwin"
     LAZYGIT_NAME="lazygit_${LAZYGIT_VERSION}_${OS_TYPE}_${ARCH}"
   elif [[ "$OS_TYPE" == "Darwin" && "$ARCH" == "arm64" ]]; then
     NVIM_NAME="nvim-macos-${ARCH}"
-    PIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-aarch64-apple-darwin"
+    RIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-aarch64-apple-darwin"
     LAZYGIT_NAME="lazygit_${LAZYGIT_VERSION}_${OS_TYPE}_${ARCH}"
+  else
+    echo "Unsupported platform: ${OS_TYPE} ${ARCH}"
+    exit 1
   fi
 }
 
@@ -68,7 +72,7 @@ install_nvim() {
 
   curl -sLo "${source_file}" "${github}/releases/download/${version}/${name}.tar.gz"
   tar zxf "${source_file}" -C "${package_path}"
-  [ ! -d "${PKG_DIR}/nvim" ] && ln -s "${package_path}/${name}" "${PKG_DIR}/nvim"
+  ln -sf "${package_path}/${name}" "${PKG_DIR}/nvim"
 
   if ! grep -q "${PKG_DIR}/nvim" <<<"$PATH"; then
     echo "export PATH=\$PATH:${PKG_DIR}/nvim/bin" >>"$PROFILE_FILE"
@@ -79,7 +83,7 @@ install_nvim() {
 }
 
 install_ripgrep() {
-  local name="${PIPGREP_NAME}"
+  local name="${RIPGREP_NAME}"
   local version="${RIPGREP_VERSION}"
   local github="https://github.com/BurntSushi/ripgrep"
   local source_file="${PKG_DIR}/source/${name}.tar.gz"
