@@ -37,7 +37,7 @@ check_env() {
   esac
 
   if [[ "$OS_TYPE" == "Linux" && "$ARCH" == "x86_64" ]]; then
-    NVIM_NAME="nvim-linux64"
+    NVIM_NAME="nvim-linux-x86_64"
     PIPGREP_NAME="ripgrep-${RIPGREP_VERSION}-${ARCH}-unknown-linux-musl"
     LAZYGIT_NAME="lazygit_${LAZYGIT_VERSION}_${OS_TYPE}_32-bit"
   elif [[ "$OS_TYPE" == "Darwin" && "$ARCH" == "x86_64" ]]; then
