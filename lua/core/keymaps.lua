@@ -26,10 +26,5 @@ keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save current file" }) -- save c
 
 -- vim - bufferline tab
 for i = 1, 9 do
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>" .. i,
-    ":BufferLineGoToBuffer " .. i .. "<CR>",
-    { noremap = true, silent = true }
-  )
+  keymap.set("n", "<leader>" .. i, "<cmd>BufferLineGoToBuffer " .. i .. "<CR>", { desc = "Go to buffer " .. i })
 end

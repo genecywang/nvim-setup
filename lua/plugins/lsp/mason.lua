@@ -49,7 +49,7 @@ return {
         -- "goimports", -- golang formatter
         -- "shfmt", -- bash formatter
         -- "pylint",
-        "eslint",
+        "eslint_d",
         "shellcheck",
       },
     })
