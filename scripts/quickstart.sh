@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
 
 NVIM_VERSION="0.11.5"
 NODEJS_VERSION="24.12.0"
