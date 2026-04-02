@@ -90,7 +90,7 @@ curl -sL https://raw.githubusercontent.com/genecywang/nvim-setup/main/scripts/qu
 | `<C-e>` | Insert | Close completion |
 | `<CR>` | Insert | Confirm selection |
 
-### Git (Gitsigns + LazyGit)
+### Git (Gitsigns + LazyGit + Diffview)
 
 | Key | Mode | Description |
 |-----|------|-------------|
@@ -107,6 +107,10 @@ curl -sL https://raw.githubusercontent.com/genecywang/nvim-setup/main/scripts/qu
 | `<leader>hd` | Normal | Diff file |
 | `<leader>hD` | Normal | Diff file against previous |
 | `ih` | Operator / Visual | Select hunk (text object) |
+| `<leader>gd` | Normal | Open diffview (all changes) |
+| `<leader>gh` | Normal | Current file git history |
+| `<leader>gH` | Normal | Branch git history |
+| `<leader>gx` | Normal | Close diffview |
 
 ### Diagnostics (Trouble)
 
