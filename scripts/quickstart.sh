@@ -128,6 +128,7 @@ REPO_URL="https://github.com/genecywang/nvim-setup.git"
 
 if [ -d "${NVIM_DIR}/.git" ]; then
   echo "Updating existing nvim config..."
+  git -C "$NVIM_DIR" checkout -- lazy-lock.json 2>/dev/null || true
   git -C "$NVIM_DIR" fetch origin
   git -C "$NVIM_DIR" reset --hard origin/main
 else
