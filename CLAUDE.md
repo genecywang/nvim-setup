@@ -12,7 +12,7 @@ This is a Neovim configuration repository using Lua and the **Lazy.nvim** plugin
 ```bash
 bash scripts/quickstart.sh
 ```
-Installs Neovim 0.11.5, Node.js, ripgrep, lazygit, and deploys this config to `~/.config/nvim`. If the config directory already exists as a git repo, it runs `git pull --ff-only` instead of re-cloning.
+Installs Neovim 0.11.5, Node.js, ripgrep, lazygit, and deploys this config to `~/.config/nvim`. If the config directory already exists as a git repo, it discards local `lazy-lock.json` changes then runs `git fetch` + `git reset --hard origin/main` to force-sync.
 
 **Format Lua files:**
 ```bash
