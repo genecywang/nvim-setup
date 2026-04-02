@@ -12,7 +12,7 @@ This is a Neovim configuration repository using Lua and the **Lazy.nvim** plugin
 ```bash
 bash scripts/quickstart.sh
 ```
-Installs Neovim 0.11.5, Node.js, ripgrep, lazygit, and deploys this config to `~/.config/nvim`.
+Installs Neovim 0.11.5, Node.js, ripgrep, lazygit, and deploys this config to `~/.config/nvim`. If the config directory already exists as a git repo, it runs `git pull --ff-only` instead of re-cloning.
 
 **Format Lua files:**
 ```bash
@@ -38,12 +38,17 @@ init.lua
 **Plugin manager** (`lua/core/lazy.lua`): auto-installs lazy.nvim from GitHub on first launch, then scans `lua/plugins/*.lua` and `lua/plugins/lsp/*.lua` for specs. Version pins are in `lazy-lock.json`.
 
 **LSP stack:**
-- `plugins/lsp/mason.lua` — declares which language servers and tools to install (html, css, lua_ls, bashls, tailwindcss, prettier, stylua, eslint_d, shellcheck, etc.)
-- `plugins/lsp/lspconfig.lua` — attaches keymaps on `LspAttach`, configures per-server settings, sets up nvim-cmp capabilities
+- `plugins/lsp/mason.lua` — declares LSP servers and tools to auto-install. Servers: html, cssls, tailwindcss, lua_ls, bashls, terraformls, yamlls, ansiblels, dockerls, pyright, gopls. Tools: prettier, stylua, shfmt, eslint_d, shellcheck, tflint, hadolint, ansible-lint, black, isort, pylint, gofumpt, goimports.
+- `plugins/lsp/lspconfig.lua` — attaches keymaps on `LspAttach`, configures per-server settings (yamlls uses SchemaStore.nvim for automatic K8s/Ansible/GH Actions schema detection, ansiblels enables ansible-lint), sets up nvim-cmp capabilities
 
 **Formatting / linting:**
-- `plugins/conform.lua` — conform.nvim formats on save; dispatches to prettier, stylua, black, ruff_format, or shfmt based on filetype
-- `plugins/nvim-lint.lua` — runs eslint_d, pylint, or shellcheck via nvim-lint
+- `plugins/formatting.lua` — conform.nvim formats on save; dispatches to prettier, stylua, shfmt, terraform_fmt, goimports/gofumpt, isort/black by filetype
+- `plugins/lintin.lua` — nvim-lint runs eslint_d, pylint, shellcheck, tflint, hadolint, ansible_lint by filetype
+
+**Other notable plugins:**
+- `plugins/schemastore.lua` — provides YAML schemas to yamlls (lazy-loaded)
+- `plugins/diffview.lua` — git diff/history UI
+- `lua/tfdetect/` — auto-detects Jenkinsfile and sets filetype to Groovy
 
 ## Adding a Plugin
 
@@ -67,5 +72,5 @@ return {
 - Telescope: `<leader>ff/fr/fs/fc/ft`
 - LSP: `gd` (definition), `gD` (declaration), `<leader>ca` (code action), `<leader>rn` (rename)
 - Formatting: `<leader>mp`; Linting: `<leader>l`
-- Git: `<leader>lg` (lazygit), `]h/[h` (hunk nav), `<leader>hs/hr/hb` (stage/reset/blame)
+- Git: `<leader>lg` (lazygit), `]h/[h` (hunk nav), `<leader>hs/hr/hb` (stage/reset/blame), `<leader>gd/gh/gH/gx` (diffview open/file-history/branch-history/close)
 - Diagnostics: `<leader>xx/xw/xd` (trouble.nvim)
