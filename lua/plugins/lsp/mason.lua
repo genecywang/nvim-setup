@@ -31,10 +31,13 @@ return {
         "cssls",
         "tailwindcss",
         "lua_ls",
-        -- "pylsp",
         "bashls",
-        -- "terraformls",
-        -- "golangci_lint_ls",
+        "terraformls", -- Terraform
+        "yamlls", -- K8s, Ansible, GitHub Actions, docker-compose
+        "ansiblels", -- Ansible playbooks
+        "dockerls", -- Dockerfile
+        "pyright", -- Python
+        "gopls", -- Go
       },
     })
 
@@ -42,15 +45,17 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        -- "isort", -- python formatter
-        -- "black", -- python formatter
-        -- "gci", -- golang formatter
-        -- "gofumpt", -- golang formatter
-        -- "goimports", -- golang formatter
-        -- "shfmt", -- bash formatter
-        -- "pylint",
+        "shfmt", -- bash formatter
         "eslint_d",
-        "shellcheck",
+        "shellcheck", -- bash linter
+        "tflint", -- Terraform linter
+        "hadolint", -- Dockerfile linter
+        "ansible-lint", -- Ansible linter
+        "black", -- python formatter
+        "isort", -- python import sorter
+        "pylint", -- python linter
+        "gofumpt", -- go formatter
+        "goimports", -- go import sorter
       },
     })
   end,

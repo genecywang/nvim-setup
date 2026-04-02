@@ -12,6 +12,10 @@ return {
       svelte = { "eslint_d" },
       python = { "pylint" },
       bash = { "shellcheck" },
+      sh = { "shellcheck" },
+      terraform = { "tflint" },
+      dockerfile = { "hadolint" },
+      yaml = { "ansible_lint" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

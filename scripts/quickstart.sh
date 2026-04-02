@@ -124,8 +124,15 @@ else
   echo "Binary path \"${PKG_DIR}/bin\" already exists in \$PATH."
 fi
 
-if [ -d "$NVIM_DIR" ]; then
-  mv "$NVIM_DIR" "${NVIM_DIR}.bk$(date +"%Y%m%d-%H%M%S")" && git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
+REPO_URL="https://github.com/genecywang/nvim-setup.git"
+
+if [ -d "${NVIM_DIR}/.git" ]; then
+  echo "Updating existing nvim config..."
+  git -C "$NVIM_DIR" pull --ff-only
 else
-  git clone https://github.com/genecywang/nvim-setup.git "$NVIM_DIR"
+  if [ -d "$NVIM_DIR" ]; then
+    mv "$NVIM_DIR" "${NVIM_DIR}.bk$(date +"%Y%m%d-%H%M%S")"
+    echo "Existing non-git config backed up."
+  fi
+  git clone "$REPO_URL" "$NVIM_DIR"
 fi

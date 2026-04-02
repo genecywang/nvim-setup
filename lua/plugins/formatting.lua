@@ -19,8 +19,12 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "black", "ruff_format" },
+        python = { "isort", "black" },
         bash = { "shfmt" },
+        sh = { "shfmt" },
+        terraform = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
+        go = { "goimports", "gofumpt" },
       },
       format_on_save = {
         lsp_fallback = true,

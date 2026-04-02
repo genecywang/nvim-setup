@@ -123,6 +123,45 @@ return {
           },
         })
       end,
+      ["yamlls"] = function()
+        lspconfig["yamlls"].setup({
+          capabilities = capabilities,
+          settings = {
+            yaml = {
+              schemaStore = {
+                -- disable built-in schemaStore; use SchemaStore.nvim instead
+                enable = false,
+                url = "",
+              },
+              schemas = require("schemastore").yaml.schemas(),
+              validate = true,
+              completion = true,
+              hover = true,
+            },
+          },
+        })
+      end,
+      ["terraformls"] = function()
+        lspconfig["terraformls"].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ["ansiblels"] = function()
+        lspconfig["ansiblels"].setup({
+          capabilities = capabilities,
+          settings = {
+            ansible = {
+              ansible = { path = "ansible" },
+              executionEnvironment = { enabled = false },
+              python = { interpreterPath = "python3" },
+              validation = {
+                enabled = true,
+                lint = { enabled = true, path = "ansible-lint" },
+              },
+            },
+          },
+        })
+      end,
     })
   end,
 }
