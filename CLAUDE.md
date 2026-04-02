@@ -48,6 +48,7 @@ init.lua
 **Other notable plugins:**
 - `plugins/schemastore.lua` — provides YAML schemas to yamlls (lazy-loaded)
 - `plugins/diffview.lua` — git diff/history UI
+- `plugins/render-markdown.lua` — inline markdown rendering (headings, code blocks, tables, checkboxes); auto-enabled on `.md` files, `<leader>tm` to toggle
 - `lua/tfdetect/` — auto-detects Jenkinsfile and sets filetype to Groovy
 
 ## Adding a Plugin

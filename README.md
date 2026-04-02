@@ -159,6 +159,12 @@ curl -sL https://raw.githubusercontent.com/genecywang/nvim-setup/main/scripts/qu
 | `S` | Normal | Substitute to end of line |
 | `s` | Visual | Substitute selection |
 
+### Markdown
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>tm` | Normal | Toggle inline markdown rendering |
+
 ### Default Plugin Keymaps
 
 | Plugin | Keys | Description |
