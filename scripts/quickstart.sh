@@ -128,7 +128,8 @@ REPO_URL="https://github.com/genecywang/nvim-setup.git"
 
 if [ -d "${NVIM_DIR}/.git" ]; then
   echo "Updating existing nvim config..."
-  git -C "$NVIM_DIR" pull --ff-only
+  git -C "$NVIM_DIR" fetch origin
+  git -C "$NVIM_DIR" reset --hard origin/main
 else
   if [ -d "$NVIM_DIR" ]; then
     mv "$NVIM_DIR" "${NVIM_DIR}.bk$(date +"%Y%m%d-%H%M%S")"
